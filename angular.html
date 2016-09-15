@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html ng-app="achyuth">
+<head>
+	<title>Angular JS</title>
+	<meta charset="utf-8">
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">	
+    <!-- <link rel="stylesheet" href="angular.css"> -->
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+	<script src="angular.js"></script>
+    <style type="text/css">
+        nav{
+            background-color: #219B8B;
+        }
+    </style>
+</head>
+<body ng-controller="appController">
+	<!-- nav menu -->
+		<nav>
+			<div class="nav-wrapper container">
+			<a href="#!" class="brand-logo">A - 401</a>
+			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down" >
+                    <li ng-repeat="m in menus" ng-show="{{m.state}}">
+                        <a ng-click="useraction(m);">{{ m.title }}</a>
+                    </li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo" >
+                    <li ng-repeat="menu in menus" ng-show="{{menu.state}}">
+                        <a ng-click="useraction(menu);">{{ menu.title }}</a>
+                    </li>
+                </ul>
+			</div>
+		</nav>
+		<!-- End Menu -->
+
+        <!-- Start Container-->
+		<div class="container">
+            <!-- Start Registration -->
+			<div class="row content-area" id="register">
+                <div class="row">
+                    <h4 class="col s12 l6 m12">Registeration Form</h4>
+                </div>
+
+                    <form class="col s12" name="regform" novalidate autocomplete="off">
+                        <div class="row">
+                            <div class="input-field col s12 m12 l6">
+                                <input id="email" name="email" ng-model="email" type="email" class="validate" required>
+                                <label for="email">Email</label>
+                                <span class="red-text text-darken-1"
+                                    ng-show="
+                                    !regform.email.$untouched &&
+                                    regform.email.$error &&
+                                    regform.email.$invalid
+                                    ">
+                                    Oops, valid email please.
+                                </span>
+                                <!--<pre>{{ form.email.$touched  | json }} - {{ form.email.$invalid }} - {{ form.email.$pristine }}</pre>-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m12 l6">
+                                <input id="name" name="name" ng-model="name" type="text" class="validate" required>
+                                <label for="name">Name</label>
+                                <span class="red-text text-darken-1"
+                                    ng-show="
+                                    !regform.name.$untouched &&
+                                    regform.name.$error &&
+                                    regform.name.$invalid
+                                    ">
+                                    Oops, enter name please.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m12 l6">
+                                <input id="about" name="about" ng-model="about" type="text" class="validate" required>
+                                <label for="about">About me</label>
+                                <span class="red-text text-darken-1"
+                                    ng-show="
+                                    !regform.about.$untouched &&
+                                    regform.about.$error &&
+                                    regform.about.$invalid
+                                    ">
+                                    Oops, enter some text.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m12 l6">
+                                <input id="pwd" name="pwd" ng-model="pwd" type="password" class="validate" required>
+                                <label for="pwd">Password</label>
+                                <span class="red-text text-darken-1"
+                                    ng-show="
+                                    !regform.pwd.$untouched &&
+                                    regform.pwd.$error &&
+                                    regform.pwd.$invalid
+                                    ">
+                                    Hey, enter password.
+                                </span>
+                                <div class="red-text text-darken-1 add_user_error">
+                                    {{ add_user_error }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button type="submit" ng-disabled="regform.$invalid" class="waves-effect waves-light btn" ng-click="addusers()">Register</button>
+                        </div>
+                    </form>
+			</div>
+            <!-- End Registration -->
+
+            <!-- Start Login -->
+            <div class="row content-area" id="login">
+                <div class="row">
+                    <h4 class="col s12 l6 m12">Login Form</h4>
+                </div>
+                <form class="col s12 m12" name="logform" novalidate autocomplete="off">
+                    <div class="row">
+                        <div class="input-field col s12 m12 l6">
+                            <input id="logemail" name="logemail" ng-model="logemail" type="email" class="validate" required>
+                            <label for="logemail">Email</label>
+                            <span class="red-text text-darken-1"
+                                  ng-show="
+                                       !logform.logemail.$untouched &&
+                                       logform.logemail.$error &&
+                                       logform.logemail.$invalid
+                                       ">
+                                Oops, valid email please.
+                            </span>        
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 m12 l6">
+                            <input id="logpwd" name="logpwd" ng-model="logpwd" type="password" class="validate" required>
+                            <label for="logpwd">Password</label>
+                            <span class="red-text text-darken-1"
+                                  ng-show="
+                                    !logform.logpwd.$untouched &&
+                                    logform.logpwd.$error &&
+                                    logform.logpwd.$invalid
+                                ">
+                                Hey, enter password.
+                            </span>
+                            <div class="red-text text-darken-1 login_errormsg">
+                                {{ errormsg }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" ng-disabled="logform.$invalid" class="waves-effect waves-light btn" ng-click="checkUser()">Login</button>
+                    </div>
+                </form>
+            </div>
+            <!-- End Login -->
+
+            <!-- Start user List -->
+            <div class="row content-area" id="users">
+                <div class="row">
+                    <h4 class="col s12 l6 m12">User List</h4>
+                </div>
+                <table>
+                    <tr>
+                        <th>ID#</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>About</th>
+                    </tr>
+                    <tr ng-repeat="u in users">
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ u.email }}</td>
+                        <td>{{ u.name }}</td>
+                        <td>{{ u.about }}</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- End user List -->
+
+            <!-- Start my profile -->
+            <div class="row content-area" id="profile">
+                <div class="row">
+                    <h4 class="col s12 l6 m12">Logged user profile</h4>
+                </div>
+                <table>
+                    <tr>
+                        <th>ID#</th>
+                        <td>{{ curent_user.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ curent_user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ curent_user.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>About</th>
+                        <td>{{ curent_user.about }}</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- End my profile -->
+
+		</div>
+        <!-- End Container-->
+</body>
+</html>
