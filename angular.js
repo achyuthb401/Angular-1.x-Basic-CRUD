@@ -24,7 +24,7 @@ achyuth401.controller('appController', function ($scope) {
     $scope.users = [
         { id: 1, email: 'developer.achyuth@gmail.com', pwd: '741', name: 'Achyuth 401', about: 'code is poetry' },
         { id: 2, email: 'achyuth.code@gmail.com', pwd: '741', name: '401 Achyuth', about: 'A Perfect day to code' },
-        { id: 3, email: 'achyuth.b@uandme.org', pwd: '741', name: 'Achyuth B', about: 'Working hours' }
+        { id: 3, email: 'b.achythkumar@gmail.com', pwd: '741', name: 'Achyuth B', about: 'Working hours' }
     ];
 
     // Default menu
